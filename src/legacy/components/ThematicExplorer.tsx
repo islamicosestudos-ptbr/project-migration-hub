@@ -67,7 +67,7 @@ export const ThematicExplorer: React.FC<ThematicExplorerProps> = ({
                 className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                   isSelected
                     ? 'bg-white dark:bg-[#121924] border-amber-800/80 shadow-xs font-semibold text-amber-950 dark:text-amber-200'
-                    : 'bg-white/60 hover:bg-white border-stone-200/90 dark:border-slate-800 text-stone-700 dark:text-slate-300'
+                    : 'bg-white/60 hover:bg-white dark:bg-[#121924]/60 dark:hover:bg-[#121924] border-stone-200/90 dark:border-slate-800 text-stone-700 dark:text-slate-300'
                 }`}
               >
                 <div className="flex items-center gap-3">

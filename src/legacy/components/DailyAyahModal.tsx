@@ -38,49 +38,49 @@ export const DailyAyahModal: React.FC<DailyAyahModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/60 backdrop-blur-xs animate-in fade-in duration-150">
-      <div className="relative w-full max-w-lg bg-[#FBF9F5] rounded-2xl border border-stone-200 shadow-2xl p-6 sm:p-8 overflow-hidden">
+      <div className="daily-ayah-card relative w-full max-w-lg bg-[#FBF9F5] dark:bg-[#121924] rounded-2xl border border-stone-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 overflow-hidden">
         {/* Subtle decorative glow */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
-        <div className="flex items-center justify-between pb-4 border-b border-stone-200">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-amber-900">
-            <Sparkles className="w-4 h-4 text-amber-700" />
+        <div className="flex items-center justify-between pb-4 border-b border-stone-200 dark:border-slate-700">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-amber-900 dark:text-amber-300">
+            <Sparkles className="w-4 h-4 text-amber-700 dark:text-amber-300" />
             <span>Versículo do Dia & Reflexão</span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1 text-stone-400 hover:text-stone-700 rounded-lg transition-colors cursor-pointer"
+            className="p-1 text-stone-400 dark:text-slate-400 hover:text-stone-700 dark:hover:text-white rounded-lg transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="mt-6 text-center">
-          <div className="inline-block px-3 py-1 bg-stone-100 rounded-full text-xs font-mono font-medium text-stone-600 mb-4">
+          <div className="inline-block px-3 py-1 bg-stone-100 dark:bg-slate-800 rounded-full text-xs font-mono font-medium text-stone-600 dark:text-slate-300 mb-4">
             Surata {ayah.surahName} · Versículo {ayah.ayahNumber}
           </div>
 
-          <div className="font-arabic text-2xl sm:text-3xl text-stone-900 leading-loose mb-5 selection:bg-amber-200">
+          <div className="font-arabic text-2xl sm:text-3xl text-stone-900 dark:text-slate-100 leading-loose mb-5 selection:bg-amber-200">
             {ayah.arabicText}
           </div>
 
-          <p className="font-editorial text-base sm:text-lg text-stone-800 italic leading-relaxed">
+          <p className="font-editorial text-base sm:text-lg text-stone-800 dark:text-slate-200 italic leading-relaxed">
             "{ayah.translation}"
           </p>
 
-          <div className="mt-6 p-4 bg-amber-50/70 border border-amber-200/60 rounded-xl text-left text-xs sm:text-sm text-stone-700 leading-relaxed font-editorial">
-            <span className="font-semibold text-amber-950 block mb-1">
+          <div className="mt-6 p-4 bg-amber-50/70 border border-amber-200/60 rounded-xl text-left text-xs sm:text-sm text-stone-700 dark:text-slate-300 leading-relaxed font-editorial">
+            <span className="font-semibold text-amber-950 dark:text-amber-200 block mb-1">
               Reflexão Espiritual (Tadabbur):
             </span>
             {ayah.reflection}
           </div>
         </div>
 
-        <div className="mt-8 pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-8 pt-4 border-t border-stone-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={handleCopy}
-            className="text-xs text-stone-600 hover:text-stone-900 flex items-center gap-1.5 cursor-pointer"
+            className="text-xs text-stone-600 dark:text-slate-300 hover:text-stone-900 flex items-center gap-1.5 cursor-pointer"
           >
             {copied ? (
               <>
