@@ -10,7 +10,7 @@ export async function fetchSurahAyahs(
 ): Promise<Ayah[]> {
   // v3 separates results containing verified, verse-specific transliterations
   // from older entries that used the same generic Bismillah fallback.
-  const cacheKey = `v3_${surahNumber}_dual_${primaryTranslation}`;
+  const cacheKey = `v4_${surahNumber}_dual_${primaryTranslation}`;
   if (cache[cacheKey]) {
     return cache[cacheKey];
   }
@@ -78,6 +78,9 @@ export async function fetchSurahAyahs(
           : {}),
         translation: primaryText,
         secondaryTranslation: secondaryText,
+        ...(typeof ayah?.footnotes?.['pt.nasr'] === 'string' && ayah.footnotes['pt.nasr'].trim()
+          ? { nasrFootnotes: ayah.footnotes['pt.nasr'].trim() }
+          : {}),
         juz: ayah.juz,
         page: ayah.page,
         sajda: Boolean(ayah.sajda),

@@ -19,6 +19,8 @@ export interface Ayah {
   transliteration?: string;
   translation: string;
   secondaryTranslation?: string; // e.g. Samir El-Hayek for side-by-side
+  /** Raw Helmi Nasr footnotes from QuranEnc ("[1] ...\n[2] ..."), keyed to [n] markers in the Nasr text. */
+  nasrFootnotes?: string;
   juz?: number;
   page?: number;
   sajda?: boolean;
