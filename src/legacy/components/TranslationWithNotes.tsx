@@ -6,7 +6,7 @@ export function parseFootnotes(raw?: string): Record<string, string> {
   if (!raw) return map;
   const re = /\[(\d+)\]\s*([\s\S]*?)(?=\s*\[\d+\]|$)/g;
   let m: RegExpExecArray | null;
-  while ((m = re.exec(raw))) if (m[2].trim()) map[m[1]] = m[2].trim();
+  while ((m = re.exec(raw))) { const [, k, v] = m; if (k && v?.trim()) map[k] = v.trim(); }
   return map;
 }
 
