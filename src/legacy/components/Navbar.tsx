@@ -7,7 +7,7 @@ interface NavbarProps {
   onNavigate: (view: 'reader' | 'catalog' | 'themes' | 'bookmarks') => void;
   onOpenSettings: () => void;
   onOpenDailyAyah: () => void;
-  lastReadSurahName?: string;
+  lastReadSurahName?: string | undefined;
   onContinueLastRead: () => void;
   theme?: AppTheme;
 }

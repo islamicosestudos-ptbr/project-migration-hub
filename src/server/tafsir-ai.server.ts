@@ -289,7 +289,7 @@ ${strict ? '5' : '4'}. Retorne APENAS o texto traduzido, sem preâmbulo, sem com
       while (true) {
         const i = next++;
         if (i >= items.length) return;
-        results[i] = await fn(items[i], i);
+        results[i] = await fn(items[i] as T, i);
       }
     });
     await Promise.all(workers);
@@ -301,7 +301,7 @@ ${strict ? '5' : '4'}. Retorne APENAS o texto traduzido, sem preâmbulo, sem com
   if (translationCache[fullKey]) return translationCache[fullKey];
   const chunks = splitIntoChunks(text, TRANSLATE_CHUNK_MAX_CHARS);
   const translatedParts = await mapPool(chunks, TRANSLATE_CONCURRENCY, (c) => translateChunk(c.text, title));
-  const translated = translatedParts.map((part, i) => (i === 0 ? '' : chunks[i].sepBefore) + part).join('');
+  const translated = translatedParts.map((part, i) => (i === 0 ? '' : chunks[i]!.sepBefore) + part).join('');
   if (!translated.trim()) throw new Error('Tradução vazia');
   translationCache[fullKey] = translated;
   return translated;

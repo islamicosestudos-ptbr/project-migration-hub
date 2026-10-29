@@ -19,7 +19,7 @@ export const ThematicExplorer: React.FC<ThematicExplorerProps> = ({
   onJumpToVerse,
   onOpenTafsirForRef,
 }) => {
-  const [selectedThemeId, setSelectedThemeId] = useState<string>(QURAN_THEMES[0].id);
+  const [selectedThemeId, setSelectedThemeId] = useState<string>(QURAN_THEMES[0]!.id);
 
   const activeTheme = QURAN_THEMES.find((t) => t.id === selectedThemeId) || QURAN_THEMES[0];
 

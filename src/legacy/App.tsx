@@ -227,7 +227,7 @@ export default function App() {
     } else {
       if (!currentAudioAyah && ayahs.length > 0) {
         setCurrentAudioAyahIndex(0);
-        setActiveAyahNumber(ayahs[0].number);
+        setActiveAyahNumber(ayahs[0]!.number);
       }
       setIsPlayingAudio(true);
     }
@@ -237,7 +237,7 @@ export default function App() {
     if (currentAudioAyahIndex < ayahs.length - 1) {
       const nextIdx = currentAudioAyahIndex + 1;
       setCurrentAudioAyahIndex(nextIdx);
-      setActiveAyahNumber(ayahs[nextIdx].number);
+      setActiveAyahNumber(ayahs[nextIdx]!.number);
       setIsPlayingAudio(true);
     } else if (activeSurahNumber < 114) {
       setActiveSurahNumber(activeSurahNumber + 1);
@@ -252,7 +252,7 @@ export default function App() {
     if (currentAudioAyahIndex > 0) {
       const prevIdx = currentAudioAyahIndex - 1;
       setCurrentAudioAyahIndex(prevIdx);
-      setActiveAyahNumber(ayahs[prevIdx].number);
+      setActiveAyahNumber(ayahs[prevIdx]!.number);
       setIsPlayingAudio(true);
     }
   };
@@ -290,7 +290,7 @@ export default function App() {
     try {
       const targetAyahs = await fetchSurahAyahs(surahNumber, settings.translationId);
       const found = targetAyahs.find((a) => a.numberInSurah === ayahNumber) || targetAyahs[0];
-      setTafsirAyah(found);
+      setTafsirAyah(found ?? null);
     } catch {
       setTafsirAyah({
         number: ayahNumber,
@@ -497,10 +497,10 @@ export default function App() {
       <DailyAyahModal
         isOpen={dailyAyahModalOpen}
         onClose={() => setDailyAyahModalOpen(false)}
-        ayah={dailyAyahData}
+        ayah={dailyAyahData!}
         onOpenInReader={handleJumpToVerse}
         onOpenTafsir={() => {
-          handleJumpToVerse(dailyAyahData.surahNumber, dailyAyahData.ayahNumber);
+          handleJumpToVerse(dailyAyahData!.surahNumber, dailyAyahData!.ayahNumber);
           setTafsirDrawerOpen(true);
         }}
       />
