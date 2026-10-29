@@ -489,3 +489,24 @@ body.theme-highContrast {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
+
+/* Alto contraste: seções sem prop de tema (Temas, Versículo do Dia) */
+.theme-highContrast .thematic-explorer [class*="bg-white"],
+.theme-highContrast .thematic-explorer [class*="bg-stone-50"],
+.theme-highContrast .daily-ayah-card {
+  background-color: #000 !important;
+}
+.theme-highContrast .thematic-explorer [class*="border"],
+.theme-highContrast .daily-ayah-card,
+.theme-highContrast .daily-ayah-card [class*="border"] {
+  border-color: #facc15 !important;
+}
+.theme-highContrast .thematic-explorer [class*="text-slate"],
+.theme-highContrast .daily-ayah-card [class*="text-slate"] {
+  color: #fff !important;
+}
+.theme-highContrast .thematic-explorer [class*="text-amber"],
+.theme-highContrast .thematic-explorer .font-arabic,
+.theme-highContrast .daily-ayah-card [class*="text-amber"] {
+  color: #fde047 !important;
+}
