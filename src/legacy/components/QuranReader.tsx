@@ -811,10 +811,31 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                     >
                       {ayah.arabicText}
                       <span
-                        className="inline-block mr-2 text-2xl select-none font-serif opacity-80"
-                        style={{ color: isHighContrast ? '#ffffff' : isDark ? '#fbbf24' : '#b45309' }}
+                        aria-label={`Versículo ${ayah.numberInSurah}`}
+                        className="relative inline-flex items-center justify-center mr-2 select-none font-serif opacity-80 align-middle"
+                        style={{
+                          color: isHighContrast ? '#ffffff' : isDark ? '#fbbf24' : '#b45309',
+                          fontSize: '1.5rem',
+                          lineHeight: 1,
+                        }}
                       >
-                        ۝{ayah.numberInSurah}
+                        <span aria-hidden="true" style={{ fontFamily: "'Amiri Quran', 'Amiri', serif", fontSize: '1.6em', lineHeight: 1 }}>۝</span>
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-x-0 flex items-center justify-center"
+                          style={{ top: '0.68em', bottom: '-0.68em' }}
+                        >
+                        <span
+                          className="font-bold"
+                          style={{
+                            lineHeight: 1,
+                            fontSize: String(ayah.numberInSurah).length >= 3 ? '0.5em' : String(ayah.numberInSurah).length === 2 ? '0.6em' : '0.7em',
+                            direction: 'ltr',
+                          }}
+                        >
+                          {ayah.numberInSurah}
+                        </span>
+                        </span>
                       </span>
                     </div>
                   </div>
