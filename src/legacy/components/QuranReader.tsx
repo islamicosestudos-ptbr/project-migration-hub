@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Ayah, SurahMeta, ReaderSettings, AppTheme } from '../types/quran';
 import { ALL_SURAHS } from '../data/quranSurahs';
 import { InlineRealTafsirView } from './InlineRealTafsirView';
+import TranslationWithNotes, { stripNoteMarkers } from './TranslationWithNotes';
 import VerseSourceDetails, { type VerseSourceCitation } from './VerseSourceDetails';
 import {
   fetchRealAsbab,
@@ -116,7 +117,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
   }, [activeAyahNumber]);
 
   const handleCopy = (ayah: Ayah) => {
-    const textToCopy = `${ayah.arabicText}\n\n"${ayah.translation}"\n(Alcorão Sagrado, Surata ${surah.transliteration} ${surah.number}:${ayah.numberInSurah} - Tradução ${
+    const textToCopy = `${ayah.arabicText}\n\n"${stripNoteMarkers(ayah.translation)}"\n(Alcorão Sagrado, Surata ${surah.transliteration} ${surah.number}:${ayah.numberInSurah} - Tradução ${
       settings.translationId === 'pt.nasr' ? 'Helmi Nasr' : 'Samir El-Hayek'
     })`;
     navigator.clipboard.writeText(textToCopy);
@@ -168,12 +169,13 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
       if (sourceId === 'quranenc:portuguese_nasr') {
         citations.push({
           category: 'Tradução em português',
-          title: 'Translation of the Meanings of the Noble Quran - Portuguese Translation',
-          author: 'Helmi Nasr',
-          editionVersion: 'Identificador da fonte: portuguese_nasr',
+          title: 'Portuguese Translation - Helmi Nasr',
+          author: 'Dr. Helmi Nasr (tradutor)',
+          editionVersion: 'Versão 1.4.1 do catálogo QuranEnc (identificador: portuguese_nasr)',
           platform: 'QuranEnc',
           verseReference: reference,
           url: `https://quranenc.com/en/browse/portuguese_nasr/${surah.number}`,
+          note: 'Desenvolvida sob supervisão do Rowwad Translation Center, segundo o catálogo QuranEnc. As notas numeradas no texto são do tradutor.',
         });
       } else if (sourceId === 'alqurancloud:pt.elhayek') {
         citations.push({
@@ -722,7 +724,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                     >
                       {ayah.numberInSurah}
                     </span>
-                    <span className="text-xs opacity-60">
+                    <span className={`text-xs ${isHighContrast ? 'text-white' : 'opacity-60'}`}>
                       {verseReference(ayah.numberInSurah)}
                     </span>
                     {ayah.sajda && (
@@ -810,7 +812,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                       {ayah.arabicText}
                       <span
                         className="inline-block mr-2 text-2xl select-none font-serif opacity-80"
-                        style={{ color: isHighContrast ? '#ffffff' : '#b45309' }}
+                        style={{ color: isHighContrast ? '#ffffff' : isDark ? '#fbbf24' : '#b45309' }}
                       >
                         ۝{ayah.numberInSurah}
                       </span>
@@ -822,7 +824,7 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                 {settings.showTransliteration && (
                   ayah.transliteration?.trim() ? (
                     <p
-                      className="font-sans italic mb-3 opacity-70"
+                      className={`font-sans italic mb-3 ${isHighContrast ? 'text-white' : 'opacity-70'}`}
                       style={{
                         fontSize: `${settings.transliterationFontSize || 15}px`,
                       }}
@@ -845,15 +847,17 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                         <span>Dr. Helmi Nasr (Complexo Rei Fahd)</span>
                         <span className="opacity-60 text-[10px]">Referência de Medina</span>
                       </div>
-                      <p
+                      <TranslationWithNotes
                         className={`leading-relaxed font-pt-${settings.portugueseFont || 'serif'}`}
                         style={{
                           fontSize: `${settings.translationFontSize || 17}px`,
                           lineHeight: settings.translationLineHeight || 1.8,
                         }}
-                      >
-                        "{settings.translationId === 'pt.nasr' ? ayah.translation : (ayah.secondaryTranslation || ayah.translation)}"
-                      </p>
+                        text={settings.translationId === 'pt.nasr' ? ayah.translation : (ayah.secondaryTranslation || ayah.translation)}
+                        footnotes={ayah.nasrFootnotes}
+                        isDark={isDark}
+                        isHighContrast={isHighContrast}
+                      />
                     </div>
 
                     {/* Samir El-Hayek */}
@@ -862,27 +866,31 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                         <span>Prof. Samir El-Hayek</span>
                         <span className="opacity-60 text-[10px]">Significado dos Versículos</span>
                       </div>
-                      <p
+                      <TranslationWithNotes
                         className={`leading-relaxed font-pt-${settings.portugueseFont || 'serif'}`}
                         style={{
                           fontSize: `${settings.translationFontSize || 17}px`,
                           lineHeight: settings.translationLineHeight || 1.8,
                         }}
-                      >
-                        "{settings.translationId === 'pt.elhayek' ? ayah.translation : (ayah.secondaryTranslation || ayah.translation)}"
-                      </p>
+                        text={stripNoteMarkers(settings.translationId === 'pt.elhayek' ? ayah.translation : (ayah.secondaryTranslation || ayah.translation))}
+                        footnotes={undefined}
+                        isDark={isDark}
+                        isHighContrast={isHighContrast}
+                      />
                     </div>
                   </div>
                 ) : (
-                  <p
-                    className={`leading-relaxed max-w-3xl font-pt-${settings.portugueseFont || 'serif'}`}
-                    style={{
-                      fontSize: `${settings.translationFontSize || 17}px`,
-                      lineHeight: settings.translationLineHeight || 1.8,
-                    }}
-                  >
-                    "{ayah.translation}"
-                  </p>
+                  <TranslationWithNotes
+                        className={`leading-relaxed max-w-3xl font-pt-${settings.portugueseFont || 'serif'}`}
+                        style={{
+                          fontSize: `${settings.translationFontSize || 17}px`,
+                          lineHeight: settings.translationLineHeight || 1.8,
+                        }}
+                        text={settings.translationId === 'pt.nasr' ? ayah.translation : stripNoteMarkers(ayah.translation)}
+                        footnotes={settings.translationId === 'pt.nasr' ? ayah.nasrFootnotes : undefined}
+                        isDark={isDark}
+                        isHighContrast={isHighContrast}
+                      />
                 )}
 
                 {/* Inline Complete Tafsir View when toggled (Real APIs: QuranEnc, UmmahAPI, spa5k) */}

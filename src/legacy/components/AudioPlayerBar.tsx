@@ -138,7 +138,7 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
               )}
             </div>
             <p className="text-xs text-amber-200/90 truncate font-editorial max-w-xs sm:max-w-md">
-              {activeAyah?.translation || 'Recitação do Nobre Alcorão'}
+              {(activeAyah?.translation && activeAyah.translation.replace(/\s?\[\d+\]/g, '')) || 'Recitação do Nobre Alcorão'}
             </p>
           </div>
         </div>

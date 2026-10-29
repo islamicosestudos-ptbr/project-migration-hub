@@ -34,7 +34,7 @@ function citationFields(citation: VerseSourceCitation): CitationField[] {
     { key: "title", label: "Título", value: citation.title },
     { key: "author", label: "Autor", value: citation.author },
     { key: "editionVersion", label: "Edição / versão", value: citation.editionVersion },
-    { key: "platform", label: "Plataforma", value: citation.platform },
+    { key: "platform", label: "Origem técnica dos dados", value: citation.platform },
     { key: "verseReference", label: "Referência do versículo", value: citation.verseReference },
     { key: "url", label: "URL", value: citation.url },
     { key: "note", label: "Nota", value: citation.note ?? "" },
@@ -92,10 +92,10 @@ export default function VerseSourceDetails({
   const compactLabels = citations
     .map((citation) => {
       const category = citation.category.trim();
-      const source =
-        citation.title.trim() || citation.author.trim() || citation.platform.trim();
+      const who = citation.author.replace(/\s*\(.*\)$/, "").trim() || citation.title.trim();
+      const source = [who, citation.platform.trim()].filter(Boolean).join(" · ");
       if (!category && !source) return "";
-      return [category, source].filter(Boolean).join(" · ");
+      return [category, source].filter(Boolean).join(": ");
     })
     .filter((label, index, labels) => label && labels.indexOf(label) === index);
 
