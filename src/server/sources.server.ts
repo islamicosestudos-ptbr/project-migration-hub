@@ -9,7 +9,7 @@ export async function getSurah(surahNumber: number): Promise<any> {
       return ({ surah: surahNumber, ayahs: quranSurahCache[surahNumber] });
     }
 
-    try {
+    {
       const [quranResponse, nasrResponse] = await Promise.all([
         fetch(
           `https://api.alquran.cloud/v1/surah/${surahNumber}/editions/quran-uthmani,pt.elhayek,en.transliteration`,
