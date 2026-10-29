@@ -5,7 +5,6 @@ const ibnKathirCache: Record<string, any> = {};
 const asbabCache: Record<string, any> = {};
 
 export async function getSurah(surahNumber: number): Promise<any> {
-  try {
     if (quranSurahCache[surahNumber]) {
       return ({ surah: surahNumber, ayahs: quranSurahCache[surahNumber] });
     }
@@ -76,7 +75,6 @@ export async function getSurah(surahNumber: number): Promise<any> {
 
       quranSurahCache[surahNumber] = formatted;
       return ({ surah: surahNumber, ayahs: formatted });
-  } finally {}
 }
 
 export async function getHelmiNasr(surah: number, ayah: number): Promise<any> {
