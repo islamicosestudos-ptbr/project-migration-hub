@@ -2,7 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
 
 /*
  * Design system definition.
@@ -141,4 +140,352 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+/* ---- Original app styles ---- */
+
+/*
+ * O tema do app é controlado pela classe `theme-*` no <body> (ver App.tsx),
+ * e NÃO pela preferência do sistema. Sem esta linha o Tailwind v4 aplica as
+ * classes `dark:` conforme o sistema operacional, o que deixava o Tafsir com
+ * cores erradas / ilegíveis quando o tema do app e o do sistema divergiam.
+ */
+@custom-variant dark (&:where(.theme-dark, .theme-dark *, .theme-highContrast, .theme-highContrast *));
+
+/* Fontes usadas por classes que já existiam nos componentes mas não estavam definidas */
+@theme static {
+  --font-editorial: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-arabic: 'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', serif;
+}
+
+
+@layer base {
+  :root {
+    --font-arabic-amiri-quran: 'Amiri Quran', 'Amiri', serif;
+    --font-arabic-amiri: 'Amiri', serif;
+    --font-arabic-scheherazade: 'Scheherazade New', 'Amiri', serif;
+    --font-arabic-noto: 'Noto Naskh Arabic', 'Amiri', serif;
+    
+    --font-display: 'Cinzel', serif;
+    --font-serif: 'Lora', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-lexend: 'Lexend', sans-serif;
+  }
+}
+
+/* Font Families for Arabic */
+.font-arabic-amiriQuran {
+  font-family: var(--font-arabic-amiri-quran);
+  direction: rtl;
+  text-align: right;
+}
+
+.font-arabic-amiri {
+  font-family: var(--font-arabic-amiri);
+  direction: rtl;
+  text-align: right;
+}
+
+.font-arabic-scheherazade {
+  font-family: var(--font-arabic-scheherazade);
+  direction: rtl;
+  text-align: right;
+}
+
+.font-arabic-notoNaskh {
+  font-family: var(--font-arabic-noto);
+  direction: rtl;
+  text-align: right;
+}
+
+/* Font Families for Portuguese */
+.font-pt-serif {
+  font-family: var(--font-serif);
+}
+
+.font-pt-sans {
+  font-family: var(--font-sans);
+}
+
+.font-pt-lexend {
+  font-family: var(--font-lexend);
+  letter-spacing: 0.015em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Theme Classes */
+body.theme-paper {
+  background-color: #FBF9F5;
+  color: #1C1917;
+}
+
+body.theme-dark {
+  background-color: #0c1117;
+  color: #e6edf3;
+}
+
+body.theme-highContrast {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.theme-light {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 113, 108, 0.25);
+  border-radius: 9999px;
+}
+
+.theme-dark ::-webkit-scrollbar-thumb,
+.theme-highContrast ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tafsir: leitura confortável (claro / sépia / escuro / alto contraste) */
+/* ------------------------------------------------------------------ */
+body {
+  --tafsir-text: #292524;
+  --tafsir-heading: #1c1917;
+  --tafsir-heading-accent: #92400e;
+  --tafsir-muted: #57534e;
+  --tafsir-rule: #e7e5e4;
+  --tafsir-hadith-bg: rgba(217, 119, 6, 0.1);
+  --tafsir-hadith-border: #b45309;
+  --tafsir-hadith-label: #92400e;
+  --tafsir-verse-bg: rgba(5, 150, 105, 0.09);
+  --tafsir-verse-border: #047857;
+  --tafsir-verse-label: #065f46;
+  --tafsir-link: #92400e;
+}
+
+body.theme-dark {
+  --tafsir-text: #e2e8f0;
+  --tafsir-heading: #f8fafc;
+  --tafsir-heading-accent: #fcd34d;
+  --tafsir-muted: #a8b3c4;
+  --tafsir-rule: #2a3a4f;
+  --tafsir-hadith-bg: rgba(245, 158, 11, 0.12);
+  --tafsir-hadith-border: #fbbf24;
+  --tafsir-hadith-label: #fcd34d;
+  --tafsir-verse-bg: rgba(16, 185, 129, 0.12);
+  --tafsir-verse-border: #34d399;
+  --tafsir-verse-label: #6ee7b7;
+  --tafsir-link: #fcd34d;
+}
+
+body.theme-highContrast {
+  --tafsir-text: #ffffff;
+  --tafsir-heading: #ffffff;
+  --tafsir-heading-accent: #fde047;
+  --tafsir-muted: #e5e5e5;
+  --tafsir-rule: #fde047;
+  --tafsir-hadith-bg: rgba(253, 224, 71, 0.12);
+  --tafsir-hadith-border: #fde047;
+  --tafsir-hadith-label: #fde047;
+  --tafsir-verse-bg: rgba(255, 255, 255, 0.1);
+  --tafsir-verse-border: #ffffff;
+  --tafsir-verse-label: #ffffff;
+  --tafsir-link: #fde047;
+}
+
+.tafsir-prose {
+  width: 100%;
+  min-width: 0;
+  color: var(--tafsir-text);
+  font-family: var(--font-editorial);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.85;
+  letter-spacing: 0.005em;
+  /* Nunca cortar: palavras longas / transliterações quebram em vez de estourar */
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .tafsir-prose {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+.tafsir-prose > :first-child {
+  margin-top: 0;
+}
+.tafsir-prose > :last-child {
+  margin-bottom: 0;
+}
+
+.tafsir-prose p {
+  margin: 0 0 1.4em;
+}
+
+.tafsir-prose h1,
+.tafsir-prose h2,
+.tafsir-prose h3,
+.tafsir-prose h4,
+.tafsir-prose h5,
+.tafsir-prose h6 {
+  font-family: var(--font-display);
+  color: var(--tafsir-heading);
+  line-height: 1.35;
+  margin: 2em 0 0.8em;
+}
+.tafsir-prose h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--tafsir-rule);
+}
+.tafsir-prose h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--tafsir-heading-accent);
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--tafsir-rule);
+}
+.tafsir-prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--tafsir-heading-accent);
+}
+.tafsir-prose h4,
+.tafsir-prose h5,
+.tafsir-prose h6 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tafsir-prose strong {
+  font-weight: 700;
+  color: var(--tafsir-heading);
+}
+.tafsir-prose em {
+  font-style: italic;
+}
+.tafsir-prose a {
+  color: var(--tafsir-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tafsir-prose ul,
+.tafsir-prose ol {
+  margin: 0 0 1.4em;
+  padding-left: 1.6em;
+}
+.tafsir-prose ul {
+  list-style: disc;
+}
+.tafsir-prose ol {
+  list-style: decimal;
+}
+.tafsir-prose li {
+  margin: 0 0 0.7em;
+  padding-left: 0.2em;
+}
+.tafsir-prose li > p {
+  margin-bottom: 0.5em;
+}
+
+.tafsir-prose hr {
+  border: 0;
+  border-top: 1px solid var(--tafsir-rule);
+  margin: 2em 0;
+}
+
+.tafsir-prose code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.35em;
+  background: var(--tafsir-hadith-bg);
+}
+
+/* Citações de Hadith / transmissões */
+.tafsir-hadith,
+.tafsir-verse,
+.tafsir-prose blockquote {
+  margin: 1.6em 0;
+  padding: 1em 1.2em;
+  border-radius: 0.9rem;
+  border-left: 4px solid var(--tafsir-hadith-border);
+  background: var(--tafsir-hadith-bg);
+}
+.tafsir-hadith p,
+.tafsir-verse p,
+.tafsir-prose blockquote p {
+  margin-bottom: 0.8em;
+}
+.tafsir-hadith p:last-child,
+.tafsir-verse p:last-child,
+.tafsir-prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+.tafsir-hadith > .tafsir-quote-body,
+.tafsir-prose blockquote {
+  font-style: italic;
+}
+
+/* Versículos do Alcorão citados no comentário */
+.tafsir-verse,
+.tafsir-prose blockquote.tafsir-verse {
+  border-left-color: var(--tafsir-verse-border);
+  background: var(--tafsir-verse-bg);
+}
+
+.tafsir-quote-label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tafsir-hadith-label);
+}
+.tafsir-verse .tafsir-quote-label {
+  color: var(--tafsir-verse-label);
+}
+
+.tafsir-arabic {
+  font-family: var(--font-arabic-amiri-quran);
+  direction: rtl;
+  text-align: right;
+  font-size: 1.65rem;
+  line-height: 2.3;
+  margin: 0;
+  color: var(--tafsir-heading);
+}
+
+/* Container de leitura do Tafsir (painel e inline) */
+.tafsir-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
