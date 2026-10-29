@@ -10,33 +10,129 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiHealthRouteImport } from './routes/api/health'
+import { Route as ApiRealTafsirAsbabRouteImport } from './routes/api/real-tafsir/asbab'
+import { Route as ApiRealTafsirHelmiNasrRouteImport } from './routes/api/real-tafsir/helmi-nasr'
+import { Route as ApiRealTafsirIbnKathirRouteImport } from './routes/api/real-tafsir/ibn-kathir'
+import { Route as ApiRealTafsirTranslateRouteImport } from './routes/api/real-tafsir/translate'
+import { Route as ApiTafsirExplainRouteImport } from './routes/api/tafsir/explain'
+import { Route as ApiQuranSurahSurahNumberRouteImport } from './routes/api/quran/surah/$surahNumber'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiHealthRoute = ApiHealthRouteImport.update({
+  id: '/api/health',
+  path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRealTafsirAsbabRoute = ApiRealTafsirAsbabRouteImport.update({
+  id: '/api/real-tafsir/asbab',
+  path: '/api/real-tafsir/asbab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRealTafsirHelmiNasrRoute = ApiRealTafsirHelmiNasrRouteImport.update({
+  id: '/api/real-tafsir/helmi-nasr',
+  path: '/api/real-tafsir/helmi-nasr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRealTafsirIbnKathirRoute = ApiRealTafsirIbnKathirRouteImport.update({
+  id: '/api/real-tafsir/ibn-kathir',
+  path: '/api/real-tafsir/ibn-kathir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRealTafsirTranslateRoute = ApiRealTafsirTranslateRouteImport.update({
+  id: '/api/real-tafsir/translate',
+  path: '/api/real-tafsir/translate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTafsirExplainRoute = ApiTafsirExplainRouteImport.update({
+  id: '/api/tafsir/explain',
+  path: '/api/tafsir/explain',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiQuranSurahSurahNumberRoute =
+  ApiQuranSurahSurahNumberRouteImport.update({
+    id: '/api/quran/surah/$surahNumber',
+    path: '/api/quran/surah/$surahNumber',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/health': typeof ApiHealthRoute
+  '/api/real-tafsir/asbab': typeof ApiRealTafsirAsbabRoute
+  '/api/real-tafsir/helmi-nasr': typeof ApiRealTafsirHelmiNasrRoute
+  '/api/real-tafsir/ibn-kathir': typeof ApiRealTafsirIbnKathirRoute
+  '/api/real-tafsir/translate': typeof ApiRealTafsirTranslateRoute
+  '/api/tafsir/explain': typeof ApiTafsirExplainRoute
+  '/api/quran/surah/$surahNumber': typeof ApiQuranSurahSurahNumberRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/health': typeof ApiHealthRoute
+  '/api/real-tafsir/asbab': typeof ApiRealTafsirAsbabRoute
+  '/api/real-tafsir/helmi-nasr': typeof ApiRealTafsirHelmiNasrRoute
+  '/api/real-tafsir/ibn-kathir': typeof ApiRealTafsirIbnKathirRoute
+  '/api/real-tafsir/translate': typeof ApiRealTafsirTranslateRoute
+  '/api/tafsir/explain': typeof ApiTafsirExplainRoute
+  '/api/quran/surah/$surahNumber': typeof ApiQuranSurahSurahNumberRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/health': typeof ApiHealthRoute
+  '/api/real-tafsir/asbab': typeof ApiRealTafsirAsbabRoute
+  '/api/real-tafsir/helmi-nasr': typeof ApiRealTafsirHelmiNasrRoute
+  '/api/real-tafsir/ibn-kathir': typeof ApiRealTafsirIbnKathirRoute
+  '/api/real-tafsir/translate': typeof ApiRealTafsirTranslateRoute
+  '/api/tafsir/explain': typeof ApiTafsirExplainRoute
+  '/api/quran/surah/$surahNumber': typeof ApiQuranSurahSurahNumberRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/health'
+    | '/api/real-tafsir/asbab'
+    | '/api/real-tafsir/helmi-nasr'
+    | '/api/real-tafsir/ibn-kathir'
+    | '/api/real-tafsir/translate'
+    | '/api/tafsir/explain'
+    | '/api/quran/surah/$surahNumber'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/health'
+    | '/api/real-tafsir/asbab'
+    | '/api/real-tafsir/helmi-nasr'
+    | '/api/real-tafsir/ibn-kathir'
+    | '/api/real-tafsir/translate'
+    | '/api/tafsir/explain'
+    | '/api/quran/surah/$surahNumber'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/health'
+    | '/api/real-tafsir/asbab'
+    | '/api/real-tafsir/helmi-nasr'
+    | '/api/real-tafsir/ibn-kathir'
+    | '/api/real-tafsir/translate'
+    | '/api/tafsir/explain'
+    | '/api/quran/surah/$surahNumber'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiHealthRoute: typeof ApiHealthRoute
+  ApiRealTafsirAsbabRoute: typeof ApiRealTafsirAsbabRoute
+  ApiRealTafsirHelmiNasrRoute: typeof ApiRealTafsirHelmiNasrRoute
+  ApiRealTafsirIbnKathirRoute: typeof ApiRealTafsirIbnKathirRoute
+  ApiRealTafsirTranslateRoute: typeof ApiRealTafsirTranslateRoute
+  ApiTafsirExplainRoute: typeof ApiTafsirExplainRoute
+  ApiQuranSurahSurahNumberRoute: typeof ApiQuranSurahSurahNumberRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +144,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/health': {
+      id: '/api/health'
+      path: '/api/health'
+      fullPath: '/api/health'
+      preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/real-tafsir/asbab': {
+      id: '/api/real-tafsir/asbab'
+      path: '/api/real-tafsir/asbab'
+      fullPath: '/api/real-tafsir/asbab'
+      preLoaderRoute: typeof ApiRealTafsirAsbabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/real-tafsir/helmi-nasr': {
+      id: '/api/real-tafsir/helmi-nasr'
+      path: '/api/real-tafsir/helmi-nasr'
+      fullPath: '/api/real-tafsir/helmi-nasr'
+      preLoaderRoute: typeof ApiRealTafsirHelmiNasrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/real-tafsir/ibn-kathir': {
+      id: '/api/real-tafsir/ibn-kathir'
+      path: '/api/real-tafsir/ibn-kathir'
+      fullPath: '/api/real-tafsir/ibn-kathir'
+      preLoaderRoute: typeof ApiRealTafsirIbnKathirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/real-tafsir/translate': {
+      id: '/api/real-tafsir/translate'
+      path: '/api/real-tafsir/translate'
+      fullPath: '/api/real-tafsir/translate'
+      preLoaderRoute: typeof ApiRealTafsirTranslateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/tafsir/explain': {
+      id: '/api/tafsir/explain'
+      path: '/api/tafsir/explain'
+      fullPath: '/api/tafsir/explain'
+      preLoaderRoute: typeof ApiTafsirExplainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/quran/surah/$surahNumber': {
+      id: '/api/quran/surah/$surahNumber'
+      path: '/api/quran/surah/$surahNumber'
+      fullPath: '/api/quran/surah/$surahNumber'
+      preLoaderRoute: typeof ApiQuranSurahSurahNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiHealthRoute: ApiHealthRoute,
+  ApiRealTafsirAsbabRoute: ApiRealTafsirAsbabRoute,
+  ApiRealTafsirHelmiNasrRoute: ApiRealTafsirHelmiNasrRoute,
+  ApiRealTafsirIbnKathirRoute: ApiRealTafsirIbnKathirRoute,
+  ApiRealTafsirTranslateRoute: ApiRealTafsirTranslateRoute,
+  ApiTafsirExplainRoute: ApiTafsirExplainRoute,
+  ApiQuranSurahSurahNumberRoute: ApiQuranSurahSurahNumberRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

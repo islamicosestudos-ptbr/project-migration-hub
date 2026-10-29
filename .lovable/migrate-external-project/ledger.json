@@ -1,0 +1,7 @@
+[
+ {"capability":"code/ui","source":"React SPA + Express","outcome":"migrated to TanStack Start (client-only reader)","status":"verified","next_action":null},
+ {"capability":"public endpoints /api/*","source":"Express","outcome":"server routes with same paths","status":"verified","next_action":null},
+ {"capability":"AI explain + translate","source":"Gemini","outcome":"preserved Gemini via REST","status":"pending","next_action":"add GEMINI_API_KEY secret, then test"},
+ {"capability":"database/auth/records","source":"none (localStorage only)","outcome":"n/a","status":"verified","next_action":null},
+ {"capability":"assets","source":"banner jpg","outcome":"Lovable asset","status":"verified","next_action":null}
+]
