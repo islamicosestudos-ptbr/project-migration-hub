@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, BookOpen, Sparkles, Volume2 } from 'lucide-react';
+import bannerAsset from '@/assets/quran-banner.jpg.asset.json';
 
 interface HeroSectionProps {
   searchQuery: string;
@@ -19,7 +20,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Visual Focal Anchor: Illuminated Archival Artwork */}
       <div className="absolute inset-0 opacity-25 mix-blend-luminosity pointer-events-none">
         <img
-          src="/src/assets/images/quran_illumination_banner_1793206586337.jpg"
+          src={bannerAsset.url}
           alt="Manuscrito Alcorânico Iluminado"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center"
