@@ -640,9 +640,9 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
               if (helmi?.hasFootnotes && helmi.footnotes.trim()) {
                 extraCitations.push({
                   category: 'Notas da tradução',
-                  title: 'Translation of the Meanings of the Noble Quran - Portuguese Translation',
-                  author: 'Helmi Nasr',
-                  editionVersion: 'Identificador da fonte: portuguese_nasr',
+                  title: 'Portuguese Translation - Helmi Nasr (notas do tradutor)',
+                  author: 'Dr. Helmi Nasr (tradutor)',
+                  editionVersion: 'Versão 1.4.1 do catálogo QuranEnc (identificador: portuguese_nasr)',
                   platform: 'QuranEnc',
                   verseReference: reference,
                   url: `https://quranenc.com/en/browse/portuguese_nasr/${surah.number}`,
