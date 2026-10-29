@@ -83,7 +83,7 @@ POR FAVOR, FORNEÇA UMA EXEGESE (TAFSIR) COMPLETA, PROFUNDA, FIDELÍSSIMA E ESPI
 Use tom respeitoso, acadêmico, acolhedor e espiritualmente inspirador. Formate com clareza em Markdown sem jargões confusos desnecessários.`;
 
   let responseText = '';
-  const modelsToTry = ['gemini-2.5-flash', 'gemini-flash-latest', 'gemini-2.5-flash-lite'];
+  const modelsToTry = ['gemini-3.8-flash', 'gemini-flash-latest', 'gemini-3.1-flash-lite'];
   for (const modelName of modelsToTry) {
     try {
       const r = await geminiGenerate(modelName, prompt);
@@ -121,7 +121,7 @@ export async function translateTafsir(text: string, title?: string): Promise<str
   const TRANSLATE_CHUNK_MAX_CHARS = 3500;
   const TRANSLATE_CONCURRENCY = 3;
   const TRANSLATE_TIMEOUT_MS = 45_000;
-  const TRANSLATE_MODELS = ['gemini-2.5-flash-lite', 'gemini-flash-latest', 'gemini-2.5-flash'];
+  const TRANSLATE_MODELS = ['gemini-3.1-flash-lite', 'gemini-flash-latest', 'gemini-3.8-flash'];
 
   const sha = (value: string) => value.length + ':' + hashStr(value);
 
