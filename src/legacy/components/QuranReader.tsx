@@ -822,13 +822,19 @@ export const QuranReader: React.FC<QuranReaderProps> = ({
                         <span aria-hidden="true" style={{ fontFamily: "'Amiri Quran', 'Amiri', serif", fontSize: '1.6em', lineHeight: 1 }}>۝</span>
                         <span
                           aria-hidden="true"
-                          className="absolute inset-0 flex items-center justify-center font-bold"
+                          className="absolute inset-x-0 flex items-center justify-center"
+                          style={{ top: '0.68em', bottom: '-0.68em' }}
+                        >
+                        <span
+                          className="font-bold"
                           style={{
+                            lineHeight: 1,
                             fontSize: String(ayah.numberInSurah).length >= 3 ? '0.5em' : String(ayah.numberInSurah).length === 2 ? '0.6em' : '0.7em',
                             direction: 'ltr',
                           }}
                         >
                           {ayah.numberInSurah}
+                        </span>
                         </span>
                       </span>
                     </div>
