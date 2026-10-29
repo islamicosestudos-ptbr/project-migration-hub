@@ -15,14 +15,14 @@ const hashStr = (s: string) => {
 
 const translationCache: Record<string, string> = {};
 
-export const hasGeminiKey = () => Boolean(process.env.GEMINI_API_KEY);
+export const hasGeminiKey = () => Boolean(process.env['GEMINI_API_KEY']);
 
 async function geminiGenerate(
   model: string,
   prompt: string,
   config?: { maxOutputTokens?: number; temperature?: number }
 ): Promise<{ text: string; finishReason: string }> {
-  const key = process.env.GEMINI_API_KEY;
+  const key = process.env['GEMINI_API_KEY'];
   if (!key) throw new Error('GEMINI_API_KEY ausente');
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
