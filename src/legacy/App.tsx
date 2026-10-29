@@ -95,7 +95,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const activeSurahMeta: SurahMeta = useMemo(() => {
-    return ALL_SURAHS.find((s) => s.number === activeSurahNumber) || ALL_SURAHS[0];
+    return ALL_SURAHS.find((s) => s.number === activeSurahNumber) || ALL_SURAHS[0]!;
   }, [activeSurahNumber]);
 
   // Load ayahs whenever activeSurahNumber or translationId changes

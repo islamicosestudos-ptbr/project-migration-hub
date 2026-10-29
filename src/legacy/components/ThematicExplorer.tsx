@@ -21,7 +21,7 @@ export const ThematicExplorer: React.FC<ThematicExplorerProps> = ({
 }) => {
   const [selectedThemeId, setSelectedThemeId] = useState<string>(QURAN_THEMES[0]!.id);
 
-  const activeTheme = QURAN_THEMES.find((t) => t.id === selectedThemeId) || QURAN_THEMES[0];
+  const activeTheme = QURAN_THEMES.find((t) => t.id === selectedThemeId) || QURAN_THEMES[0]!;
 
   const getThemeIcon = (iconName: string) => {
     switch (iconName) {
