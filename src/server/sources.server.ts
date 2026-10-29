@@ -75,6 +75,7 @@ export async function getSurah(surahNumber: number): Promise<any> {
 
       quranSurahCache[surahNumber] = formatted;
       return ({ surah: surahNumber, ayahs: formatted });
+    }
 }
 
 export async function getHelmiNasr(surah: number, ayah: number): Promise<any> {
