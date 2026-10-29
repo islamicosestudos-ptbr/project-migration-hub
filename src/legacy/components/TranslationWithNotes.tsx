@@ -17,7 +17,7 @@ export function stripNoteMarkers(text: string): string {
 
 interface Props {
   text: string;
-  footnotes?: string;
+  footnotes?: string | undefined;
   className?: string;
   style?: React.CSSProperties;
   isDark: boolean;
