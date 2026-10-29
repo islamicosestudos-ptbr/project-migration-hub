@@ -54,6 +54,7 @@ export async function getSurah(surahNumber: number): Promise<any> {
       const formatted = arabicAyahs.map((arabic: any) => {
         const ayahNumber = Number(arabic.numberInSurah);
         const nasr = (nasrByAyah.get(ayahNumber) as any)?.translation?.trim() || '';
+        const nasrFootnotes = (nasrByAyah.get(ayahNumber) as any)?.footnotes?.trim() || '';
         const elhayek = (elhayekByAyah.get(ayahNumber) as any)?.text?.trim() || '';
         const transliteration =
           (transliterationByAyah.get(ayahNumber) as any)?.text?.trim() || '';
@@ -67,6 +68,7 @@ export async function getSurah(surahNumber: number): Promise<any> {
           arabicText: arabic.text,
           ...(transliteration ? { transliteration } : {}),
           translations: { 'pt.nasr': nasr, 'pt.elhayek': elhayek },
+          ...(nasrFootnotes ? { footnotes: { 'pt.nasr': nasrFootnotes } } : {}),
           juz: arabic.juz,
           page: arabic.page,
           sajda: Boolean(arabic.sajda),
